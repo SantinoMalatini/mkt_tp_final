@@ -1,0 +1,5 @@
+store_id,name,address_line1,address_city,address_postal_code,address_province_name
+1,Tienda BA,Sucursal Buenos Aires - Av. Principal 101,Buenos Aires,1001,Buenos Aires
+2,Tienda CBA,Sucursal Córdoba - Av. Principal 102,Córdoba,1002,Córdoba
+3,Tienda SF,Sucursal Santa Fe - Av. Principal 103,Santa Fe,1003,Santa Fe
+4,Tienda MZA,Sucursal Mendoza - Av. Principal 104,Mendoza,1004,Mendoza
