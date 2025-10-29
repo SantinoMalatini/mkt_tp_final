@@ -107,3 +107,27 @@ El Data Warehouse se compone de las siguientes tablas:
 * `fact_nps_responses.csv`: Registra las respuesta de las encuestas NPS realizadas, enlazando fechas, clientes y canales.
 
     - Grano: *El evento de una respuesta a la encuesta NPS de un cliente mediante un canal y en un dia determinado.*
+
+### Diagramas Star Schema
+
+Se crearon los Star Schema para cada tabla de hechos
+
+* **fact_sales**
+
+![](assets/fact_sales.png)
+
+* **fact_shipments**
+
+![](assets/fact_shipments.png)
+
+* **fact_payments**
+
+![](assets/fact_payments.png)
+
+* **fact_web_sessions**
+
+![](assets/fact_web_sessions.png)
+
+* **fact_nps_responses**
+
+![](assets/fact_nps_responses.png)
