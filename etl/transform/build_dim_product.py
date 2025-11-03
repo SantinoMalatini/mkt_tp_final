@@ -21,11 +21,10 @@ def build_dim_product(data):
 
     # === Crear surrogate key ===
     dim_product = dim_product.reset_index(drop=True)
-    dim_product['product_key'] = dim_product.index + 1
+    dim_product['product_id'] = dim_product.index + 1
 
     # === Selección y renombrado de columnas finales ===
     dim_product_final = dim_product[[
-        'product_key',
         'product_id',
         'sku',
         'name',

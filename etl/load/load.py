@@ -13,7 +13,7 @@ from etl.transform.build_fact_sales import build_fact_sales
 from etl.transform.build_fact_payments import build_fact_payments
 from etl.transform.build_fact_shipments import build_fact_shipments
 from etl.transform.build_fact_web_sessions import build_fact_web_sessions
-from etl.transform.build_nps_responses import build_fact_nps_responses
+from etl.transform.build_fact_nps_responses import build_fact_nps_responses
 
 
 def pipeline(dim_output_path, fact_output_path):
@@ -25,7 +25,7 @@ def pipeline(dim_output_path, fact_output_path):
     df_dim_location = build_dim_location(data)
     df_dim_product = build_dim_product(data)
     df_dim_store = build_dim_store(data)
-    df_dim_date = build_dim_date()
+    df_dim_date = build_dim_date(data)
     
     df_fact_sales = build_fact_sales(data, df_dim_date, df_dim_customer, df_dim_product, df_dim_channel, df_dim_store, df_dim_location)
     df_fact_payments = build_fact_payments(data, df_dim_date, df_dim_customer, df_dim_channel)

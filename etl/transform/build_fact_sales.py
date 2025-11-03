@@ -53,7 +53,8 @@ def build_fact_sales(data: Dict[str, pd.DataFrame],
     final_columns = [
         'sales_id', 'order_date_id', 'customer_id', 'product_id', 'channel_id', 'store_id',
         'billing_location_id', 'shipment_location_id', 'order_id', 'order_item_id',
-        'order_status', 'currency_code', 'quantity', 'unit_price', 'discount_amount', 'line_total'
+        'order_status', 'currency_code', 'quantity', 'unit_price', 'discount_amount', 'line_total',
+        'subtotal', 'tax_amount', 'shipping_fee', 'total_amount'
     ]
     fact_sales = fact_sales.reindex(columns=final_columns)
 
