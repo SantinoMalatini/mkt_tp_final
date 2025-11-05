@@ -281,3 +281,96 @@ Se crearon los Star Schema para cada tabla de hechos
 * **fact_nps_responses**
 
 ![](assets/fact_nps_responses.png)
+
+## Consultas Clave
+
+Para calcular los KPIs que se utilizaron en los dashboards, se utilizaron las siguientes metricas DAX:
+
+* **Total Ventas:**
+```
+Total Ventas = 
+CALCULATE(
+    SUMX(
+        SUMMARIZE(
+            'fact_sales',
+            'fact_sales'[order_id],
+            "TotalPedido", MAX('fact_sales'[total_amount])
+        ),
+        [TotalPedido]
+    ),
+    'fact_sales'[order_status] IN {"PAID", "FULFILLED"}
+)
+```
+
+* **Ticket Promedio:**
+
+```
+Ticket Promedio = 
+VAR VentasValidas =
+    FILTER(
+        VALUES('fact_sales'[order_id]),
+        CALCULATE(
+            MAX('fact_sales'[order_status])
+        ) IN {"PAID", "FULFILLED"}
+    )
+RETURN
+    AVERAGEX(
+        VentasValidas,
+        CALCULATE(MAX('fact_sales'[total_amount]))
+    )
+```
+
+* **Ticket Promedio:**
+
+```
+Usuarios Activos = DISTINCTCOUNT(fact_web_sessions[customer_id])
+```
+
+* **NPS score**
+
+```
+NPS = 
+VAR TotalRespuestas = COUNTROWS(fact_nps_responses)
+VAR Promotores = CALCULATE(
+    COUNTROWS(fact_nps_responses),
+    fact_nps_responses[score] >= 9
+)
+VAR Detractores = CALCULATE(
+    COUNTROWS(fact_nps_responses),
+    fact_nps_responses[score] <= 6
+)
+VAR PctPromotores = DIVIDE(Promotores, TotalRespuestas)
+VAR PctDetractores = DIVIDE(Detractores, TotalRespuestas)
+RETURN
+(PctPromotores - PctDetractores) * 100
+```
+
+* **Entregas a Tiempo:**
+    - *Se tomo como "entregado a tiempo" a las entregas en un tiempo menor o igual a 3 dias*
+
+```
+% Entregas a Tiempo = 
+DIVIDE(
+    COUNTROWS(
+        FILTER(
+            fact_shipments,
+            fact_shipments[delivery_time_days] <= 3
+        )
+    ),
+    COUNTROWS(fact_shipments)
+)
+```
+
+* **Pagos Reembolsados:**
+
+```
+% Pagos Reembolsados = 
+VAR TotalPagos = COUNTROWS(fact_payments)
+VAR PagosReembolsados = 
+    CALCULATE(
+        COUNTROWS(fact_payments),
+        fact_payments[payment_status] = "REFUNDED"
+    )
+RETURN
+DIVIDE(PagosReembolsados, TotalPagos)
+```
