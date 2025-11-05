@@ -5,7 +5,27 @@ Repositorio del trabajo práctico final de la materia.
 **Consigna y documento principal:** [Trabajo Práctico Final](https://docs.google.com/document/d/15RNP3FVqLjO4jzh80AAkK6mUR5DOLqPxLjQxqvdzrYg/edit?usp=sharing)
 **Diagrama Entidad Relación:** [DER](./assets/DER.png)
 
-**Enlace al Dashboard:** [DASHBOARD](https://app.powerbi.com/view?r=eyJrIjoiODUyNmQxZDUtOTI2OS00NTcxLTljYTUtOTIwNzJhOTgwNjZkIiwidCI6IjNlMDUxM2Q2LTY4ZmEtNDE2ZS04ZGUxLTZjNWNkYzMxOWZmYSIsImMiOjR9)
+**Enlace al Dashboard Final:** [DASHBOARD](https://app.powerbi.com/view?r=eyJrIjoiODUyNmQxZDUtOTI2OS00NTcxLTljYTUtOTIwNzJhOTgwNjZkIiwidCI6IjNlMDUxM2Q2LTY4ZmEtNDE2ZS04ZGUxLTZjNWNkYzMxOWZmYSIsImMiOjR9)
+
+* Dashboard de Ventas:
+
+![](assets/dashboard_sales.png)
+
+* Dashboard de Entregas:
+
+![](assets/dashboard_shipments.png)
+
+* Dashboard de Encuestas NPS:
+
+![](assets/dashboard_nps_responses.png)
+
+* Dashboard de Pagos:
+
+![](assets/dashboard_payments.png)
+
+* Dashboard de Sesiones Web:
+
+![](assets/dashboard_web_sessions.png)
 
 ---
 
@@ -227,6 +247,7 @@ El Data Warehouse se compone de las siguientes tablas:
 * `fact_nps_responses.csv`: Registra las respuesta de las encuestas NPS realizadas, enlazando fechas, clientes y canales.
 
     - Grano: *El evento de una respuesta a la encuesta NPS de un cliente mediante un canal y en un dia determinado.*
+    - Columnas:
         | **Nombre**          | **Descripción**                                          | **Tipo de dato** |
         | ------------------- | -------------------------------------------------------- | ---------------- |
         | `nps_responses_id`  | Clave subrogada (PK)                                     | BIGINT           |
